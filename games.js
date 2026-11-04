@@ -52,7 +52,8 @@ const GAMES = (() => {
   /* ───────── 1. 참아! (Go/No-Go) ───────── */
   const gonogo = {
     id: 'gonogo', name: '참아!', emoji: '🟢', duration: 15, countdown: true,
-    desc: '초록 원이 뜨면 최대한 빨리 탭!\n빨간 원은 절대 누르지 마세요.',
+    desc: '초록이면 탭! 빨강이면 참기!',
+    demo: `<div class="demo gng-demo"><div><span class="dot green pulse"></span><b>탭!</b></div><div><span class="dot red"></span><b>참기!</b></div></div>`,
     run(host, done) {
       host.innerHTML = `<div class="game-area gng"><div class="timer">15.0</div><div class="stim"></div><div class="feedback"></div></div>`;
       const area = $('.gng', host), stim = $('.stim', host), fb = $('.feedback', host), timerEl = $('.timer', host);
@@ -112,7 +113,8 @@ const GAMES = (() => {
   /* ───────── 2. 따라가! (추적) ───────── */
   const track = {
     id: 'track', name: '따라가!', emoji: '🎯', duration: 10, countdown: false,
-    desc: '떠다니는 원 위에 손가락을 계속 올려두세요.\n손을 떼면 감점!',
+    desc: '도망가는 공을 손가락으로 쫓아가세요',
+    demo: `<div class="demo trk-demo"><span class="dot yellow orbit"></span><span class="finger orbit">👆</span></div>`,
     run(host, done) {
       host.innerHTML = `<div class="game-area trk"><canvas></canvas><div class="timer">10.0</div><div class="hint">원을 누르면 시작돼요</div></div>`;
       const area = $('.trk', host), canvas = $('canvas', host), hint = $('.hint', host), timerEl = $('.timer', host);
@@ -175,7 +177,8 @@ const GAMES = (() => {
   /* ───────── 3. 거꾸로! (숫자 역순 기억) ───────── */
   const span = {
     id: 'span', name: '거꾸로!', emoji: '🔢', duration: null, countdown: true,
-    desc: '숫자가 하나씩 지나가요.\n끝나면 거꾸로 순서대로 입력하세요.',
+    desc: '본 숫자를 거꾸로 입력하면 끝!',
+    demo: `<div class="demo spn-demo"><span class="seq">3 7 2</span><span class="arrow">→</span><span class="seq hi">2 7 3</span></div>`,
     run(host, done) {
       host.innerHTML = `
         <div class="game-area spn">
@@ -247,7 +250,8 @@ const GAMES = (() => {
   /* ───────── 4. 버텨! (균형, 가속도 센서) ───────── */
   const balance = {
     id: 'balance', name: '버텨!', emoji: '🧘', duration: 10, countdown: false,
-    desc: '폰을 손바닥 위에 수평으로 올리고\n10초만 가만히 버티세요.',
+    desc: '폰을 손바닥에 올리고 가만히!',
+    demo: `<div class="demo bal-demo"><span class="phone wobble">📱</span><span class="hand">🤲</span></div>`,
     run(host, done, fallback) {
       host.innerHTML = `<div class="game-area bal"><div class="level"><div class="bubble"></div></div><div class="timer">10.0</div><div class="hint">준비되면 화면을 탭하세요</div></div>`;
       const area = $('.bal', host), bubble = $('.bubble', host), hint = $('.hint', host), timerEl = $('.timer', host);
@@ -303,7 +307,8 @@ const GAMES = (() => {
   /* ───────── 5. 똑바로! (직선 긋기, 센서 대체용) ───────── */
   const line = {
     id: 'line', name: '똑바로!', emoji: '📏', duration: null, countdown: false,
-    desc: '왼쪽 점에서 오른쪽 점까지\n손가락으로 똑바로 그으세요.',
+    desc: '초록 점에서 노란 점까지 한 번에 쭉!',
+    demo: `<div class="demo lin-demo"><span class="dot green"></span><span class="dash"></span><span class="dot yellow"></span><span class="finger slide">👆</span></div>`,
     run(host, done) {
       host.innerHTML = `<div class="game-area lin"><canvas></canvas><div class="hint">왼쪽 점에서 시작해 오른쪽 점에서 손을 떼세요</div></div>`;
       const area = $('.lin', host), canvas = $('canvas', host), hint = $('.hint', host);

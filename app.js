@@ -89,10 +89,10 @@ const APP = (() => {
     render(`
       <section class="screen center">
         <div class="step">${i + 1} / ${ORDER.length}</div>
-        <div class="emoji big">${g.emoji}</div>
-        <h2>${g.name}</h2>
-        <p style="color:var(--muted);white-space:pre-line">${g.desc}</p>
-        ${g.duration ? `<p class="fine">${g.duration}초</p>` : ''}
+        <h2>${g.emoji} ${g.name}</h2>
+        <p class="desc">${g.desc}</p>
+        ${g.demo || `<div class="emoji big">${g.emoji}</div>`}
+        ${g.duration ? `<p class="fine">${g.duration}초면 끝나요</p>` : ''}
         <div class="spacer"></div>
         <button class="btn primary" id="ready">준비 완료</button>
       </section>`);

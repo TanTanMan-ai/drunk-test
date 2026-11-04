@@ -148,3 +148,33 @@ details p { color: var(--muted); font-size: 13px; margin-top: 10px; }
 .share-preview { position: fixed; inset: 0; background: rgba(0,0,0,.85); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; z-index: 50; padding: 20px; }
 .share-preview img { max-height: 70vh; max-width: 100%; border-radius: 16px; }
 .share-preview p { color: var(--muted); font-weight: 600; }
+
+/* 게임 안내 예시 */
+.desc { font-size: 20px; font-weight: 700; line-height: 1.4; }
+.demo { width: 100%; max-width: 320px; height: 190px; margin: 6px auto; background: var(--card); border-radius: var(--radius); position: relative; display: flex; align-items: center; justify-content: center; gap: 40px; overflow: hidden; }
+.demo .dot { display: inline-block; width: 64px; height: 64px; border-radius: 50%; }
+.demo .dot.green { background: var(--green); box-shadow: 0 0 30px rgba(46,204,113,.5); }
+.demo .dot.red { background: var(--red); box-shadow: 0 0 30px rgba(255,71,87,.5); }
+.demo .dot.yellow { background: var(--accent-2); box-shadow: 0 0 30px rgba(254,202,87,.5); }
+.demo b { display: block; margin-top: 10px; font-size: 18px; }
+.gng-demo > div { text-align: center; }
+.pulse { animation: pulse 1s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+.finger { font-size: 44px; line-height: 1; filter: drop-shadow(0 4px 8px rgba(0,0,0,.4)); }
+.trk-demo .dot, .trk-demo .finger { position: absolute; left: 50%; top: 50%; margin: -32px 0 0 -32px; }
+.trk-demo .finger { margin: -10px 0 0 -8px; animation-delay: .18s; }
+.orbit { animation: orbit 3s ease-in-out infinite; }
+@keyframes orbit { 0% { transform: translate(-70px, -20px); } 33% { transform: translate(50px, -40px); } 66% { transform: translate(30px, 40px); } 100% { transform: translate(-70px, -20px); } }
+.spn-demo { gap: 16px; font-weight: 900; font-size: 34px; font-variant-numeric: tabular-nums; }
+.spn-demo .arrow { color: var(--muted); font-size: 28px; }
+.spn-demo .hi { color: var(--accent-2); animation: pulse 1.6s ease-in-out infinite; }
+.bal-demo { flex-direction: column; gap: 0; }
+.bal-demo .phone { font-size: 56px; line-height: 1; margin-bottom: -14px; z-index: 1; }
+.bal-demo .hand { font-size: 72px; line-height: 1; }
+.wobble { animation: wobble 2.4s ease-in-out infinite; transform-origin: 50% 100%; }
+@keyframes wobble { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+.lin-demo { gap: 0; }
+.lin-demo .dot { width: 36px; height: 36px; }
+.lin-demo .dash { width: 120px; border-top: 3px dashed var(--muted); opacity: .6; }
+.lin-demo .finger { position: absolute; top: 50%; left: 50%; margin: -6px 0 0 -100px; animation: slide 1.8s ease-in-out infinite; }
+@keyframes slide { 0% { transform: translateX(0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateX(190px); opacity: 0; } }
