@@ -52,7 +52,7 @@ const GAMES = (() => {
   /* ───────── 1. 참아! (Go/No-Go) ───────── */
   const gonogo = {
     id: 'gonogo', name: '초록만 탭!', emoji: '👆', duration: 15, countdown: true,
-    desc: '초록이면 탭! 빨강이면 참기!',
+    desc: '초록 원만 탭! 빨강 원은 참기!',
     demo: `<div class="demo gng-demo"><div><span class="dot green pulse"></span><b>탭!</b></div><div><span class="dot red"></span><b>참기!</b></div></div>`,
     run(host, done) {
       host.innerHTML = `<div class="game-area gng"><div class="timer">15.0</div><div class="stim"></div><div class="feedback"></div></div>`;
@@ -86,9 +86,14 @@ const GAMES = (() => {
         stimOn = null; stim.className = 'stim';
         schedule();
       };
+      const inStim = (e) => {
+        const r = stim.getBoundingClientRect();
+        const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+        return Math.hypot(e.clientX - cx, e.clientY - cy) <= r.width / 2 + 8; // 원 바깥 8px까지 여유
+      };
       const onTap = (e) => {
         e.preventDefault();
-        if (!stimOn) return;
+        if (!stimOn || !inStim(e)) return; // 원 밖 탭은 무시
         const rt = performance.now() - stimOn;
         clearTimeout(hideT);
         if (color === 'green') { if (rt > 120) { rts.push(rt); hits++; flash(`${Math.round(rt)}ms`, 'good'); } }
