@@ -51,7 +51,7 @@ const GAMES = (() => {
 
   /* ───────── 1. 참아! (Go/No-Go) ───────── */
   const gonogo = {
-    id: 'gonogo', name: '참아!', emoji: '🟢', duration: 15, countdown: true,
+    id: 'gonogo', name: '초록만 탭!', emoji: '👆', duration: 15, countdown: true,
     desc: '초록이면 탭! 빨강이면 참기!',
     demo: `<div class="demo gng-demo"><div><span class="dot green pulse"></span><b>탭!</b></div><div><span class="dot red"></span><b>참기!</b></div></div>`,
     run(host, done) {
@@ -177,7 +177,7 @@ const GAMES = (() => {
   /* ───────── 3. 거꾸로! (숫자 역순 기억) ───────── */
   const span = {
     id: 'span', name: '거꾸로!', emoji: '🔢', duration: null, countdown: true,
-    desc: '본 숫자를 거꾸로 입력하면 끝!',
+    desc: '본 숫자를 거꾸로! 5자리까지 맞히면 끝',
     demo: `<div class="demo spn-demo"><span class="seq">3 7 2</span><span class="arrow">→</span><span class="seq hi">2 7 3</span></div>`,
     run(host, done) {
       host.innerHTML = `
@@ -191,7 +191,8 @@ const GAMES = (() => {
           </div>
         </div>`;
       const digitEl = $('.digit', host), status = $('.status', host), entryEl = $('.entry', host), pad = $('.keypad', host);
-      let len = 3, fails = 0, best = 2, seq = [], entry = '', alive = true, inputOn = false;
+      const MAX_LEN = 5;
+      let len = 3, best = 2, seq = [], entry = '', alive = true, inputOn = false;
       const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
       const render = () => { entryEl.textContent = entry.split('').join(' '); };
@@ -220,13 +221,13 @@ const GAMES = (() => {
         inputOn = false; pad.setAttribute('aria-disabled', 'true');
         const ok = entry === seq.slice().reverse().join('');
         if (ok) {
-          best = len; fails = 0; len++;
+          best = len; len++;
+          if (len > MAX_LEN) { status.textContent = `${MAX_LEN}자리 성공! 멀쩡하네요 😎`; await sleep(1000); return finish(); }
           status.textContent = '정답! 한 자리 추가 🔥';
-          if (len > 8) { await sleep(700); return finish(); }
         } else {
-          fails++;
-          status.textContent = fails >= 2 ? `정답은 ${seq.slice().reverse().join('')}` : '아쉽! 같은 자리수로 한 번 더';
-          if (fails >= 2) { await sleep(1100); return finish(); }
+          // 한 번 틀리면 재도전 없이 바로 종료 (취한 걸로 치고 넘어감)
+          status.textContent = `땡! 정답은 ${seq.slice().reverse().join('')} 😵‍💫`;
+          await sleep(1200); return finish();
         }
         await sleep(800);
         round();

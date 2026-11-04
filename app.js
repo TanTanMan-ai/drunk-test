@@ -133,7 +133,7 @@ const APP = (() => {
     state.party.push({ nickname: state.nickname || `${state.party.length + 1}번째 사람`, res });
     const r = state.results;
     const bars = [
-      ['참아!', res.imp.gonogo, r.gonogo ? `${Math.round(r.gonogo.rt)}ms · 실수 ${r.gonogo.fa}` : ''],
+      ['초록만 탭!', res.imp.gonogo, r.gonogo ? `${Math.round(r.gonogo.rt)}ms · 실수 ${r.gonogo.fa}` : ''],
       ['따라가!', res.imp.track, r.track ? `오차 ${Math.round(r.track.dist)}px` : ''],
       ['거꾸로!', res.imp.span, r.span ? `${r.span.len}자리` : ''],
       [r.balance ? '버텨!' : '똑바로!', res.imp.balance, r.balance ? `흔들림 ${r.balance.sway.toFixed(2)}` : r.line ? `편차 ${Math.round(r.line.dev)}px` : ''],

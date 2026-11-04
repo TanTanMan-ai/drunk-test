@@ -51,7 +51,7 @@ const SHARE = (() => {
     }
 
     // 게임별 저하 바
-    const rows = [['참아!', res.imp.gonogo], ['따라가!', res.imp.track], ['거꾸로!', res.imp.span], ['버텨!', res.imp.balance]].filter(r => r[1] != null);
+    const rows = [['초록만 탭!', res.imp.gonogo], ['따라가!', res.imp.track], ['거꾸로!', res.imp.span], ['버텨!', res.imp.balance]].filter(r => r[1] != null);
     let y = 1460;
     for (const [nm, v] of rows) {
       ctx.textAlign = 'left'; ctx.fillStyle = '#f4f4f8'; ctx.font = font(700, 36); ctx.fillText(nm, 160, y + 14);
